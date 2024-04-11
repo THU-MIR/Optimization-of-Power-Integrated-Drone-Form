@@ -1,0 +1,182 @@
+<mujoco model="robot">
+    <compiler angle="degree" coordinate="local" inertiafromgeom="true"/>
+    <option integrator="RK4" timestep="0.01" impratio= "1"/>
+    <default >
+        <geom conaffinity="0" condim="3" density="1.0" friction="1 0.5 0.5" margin="0.01" />
+        <default class="leg">
+            <joint type="hinge" range="-90 90" armature="1" damping="200" limited="true" frictionloss="25"/>
+            <motor ctrlrange="-1 1" gear="1" forcerange="-1 1"/>
+            <position ctrlrange="-10 10" gear="6.3694" forcerange="-300 300" kp="200" kv="1"/>
+        </default> 
+        <default class="wheel">
+            <geom type="cylinder" size="0.8" fromto="0 -0.05 0 0 0.05 0" material="Matwheel"  friction="1 0.5 1"/>
+            <joint type="hinge" armature="1" damping=".3" limited="false" frictionloss="0"/>
+            <motor ctrlrange="-1 1" gear="100" forcerange="-150 150"/>
+            <velocity ctrlrange="-10 10" gear="10" forcerange="-150 150" kv="150"/>  
+        </default> 
+        <default class="propl">
+            
+          
+            <general ctrlrange="0 1" gear="0 50 0 0 0 0 "/>
+            <mesh scale="0.01 0.01 0.01"/>
+        </default>
+        <default class="propr">
+            <general ctrlrange="0 1" gear="0 -50 0 0 0 0 "/>
+            <mesh scale="0.01 0.01 0.01"/>
+        </default>
+        
+    </default>
+    <asset>
+        <texture builtin="checker" height="1024" name="texplane" rgb1=".5 .5 .5" rgb2="0.8 0.8 0.8" type="2d" width="1024"/>
+        <material name="MatPlane" reflectance="0.5" shininess="1" specular="1" texrepeat="5 5" texture="texplane"/>
+        <texture builtin="checker" height="1024" name="texwheel" rgb1="1 .5 .2" rgb2="0.5 0.8 1" type="2d" width="1024"/>
+        <material name="Matwheel" reflectance="0.5" shininess="1" specular="1"  texture="texwheel"/>
+    </asset>   
+    <worldbody>
+        <light directional="true" pos="-0.5 0.5 3" dir="0 0 -1" />
+        <geom conaffinity="1" condim="3" material="MatPlane" name="floor" pos="0 0 -1"  size="100 100 100" type="plane" friction="1 0.5 1"/>
+        <!-- 构建主体 -->
+        <body name="torso" pos="0 0 1">
+            <joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
+            <geom name="torso_geom" pos="0 0 0" type="box" size="1.6 0.4 0.4" />
+            <!-- 构建左前1腿 -->
+            <body name="lf_leg1" pos="1.2 0.9 0">
+                <geom name="lf_leg1_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                <joint axis="1 0 0" name="lf_leg1_Joint_x" pos="0 -0.5 0" class="leg"/>
+                <joint axis="0 0 1" name="lf_leg1_Joint_z" pos="0 -0.5 0" class="leg"/>
+                <!-- 构建左前2腿 -->
+                <body name="lf_leg2" pos="0 1 0">
+                    <geom name="lf_leg2_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                    <joint axis="1 0 0" name="lf_leg2_Joint_x" pos="0 -0.5 0" class="leg"/>
+                    <joint axis="0 0 1" name="lf_leg2_Joint_z" pos="0 -0.5 0" class="leg"/>
+                   
+                    <!-- 构建左前3腿 -->
+                    <body name="lf_leg3" pos="0 1 0">
+                        <geom name="lf_leg3_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="box"/>
+                        <joint axis="1 0 0" name="lf_leg3_Joint_x" pos="0 -0.5 0" class="leg"/>
+                        <joint axis="0 0 1" name="lf_leg3_Joint_z" pos="0 -0.5 0" class="leg"/>
+                        <!-- 构建左前3腿肌肉节点 -->
+                        <body name ="lf_motor" pos="0 0.5 0">
+                            <geom name ="lf_motor_geom" pos="0 0 0" class="wheel"/>
+                            <joint axis="0 1 0" name="lf_motor_y" pos="0 -0.1 0" class="wheel"/>
+                            <site name="thrust1" pos="0 0 0"/>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <!-- 构建右前1腿 -->
+            <body name="rf_leg1" pos="1.2 -0.9 0">
+                <geom name="rf_leg1_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                <joint axis="1 0 0" name="rf_leg1_Joint_x" pos="0 0.5 0" class="leg"/>
+                <joint axis="0 0 1" name="rf_leg1_Joint_z" pos="0 0.5 0" class="leg"/>
+
+                <!-- 构建右前2腿 -->
+                <body name="rf_leg2" pos="0 -1 0">
+                    <geom name="rf_leg2_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                    <joint axis="1 0 0" name="rf_leg2_Joint_x" pos="0 0.5 0" class="leg"/>
+                    <joint axis="0 0 1" name="rf_leg2_Joint_z" pos="0 0.5 0" class="leg"/>
+
+                    <!-- 构建右前3腿 -->
+                    <body name="rf_leg3" pos="0 -1 0">
+                        <geom name="rf_leg3_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="box"/>
+                        <joint axis="1 0 0" name="rf_leg3_Joint_x" pos="0 0.5 0" class="leg"/>
+                        <joint axis="0 0 1" name="rf_leg3_Joint_z" pos="0 0.5 0" class="leg"/>
+                        <body name ="rf_motor" pos="0 -0.5 0">
+                            <geom name ="rf_motor_geom" pos="0 0 0" class="wheel"/>
+                            <joint axis="0 1 0" name="rf_motor_y" pos="0 0.1 0" class="wheel"/>
+                            <site name="thrust2" pos="0 0 0"/>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <!-- 构建左后1腿 -->
+            <body name="lb_leg1" pos="-1.2 0.9 0">
+                <geom name="lb_leg1_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                <joint axis="1 0 0" name="lb_leg1_Joint_x" pos="0 -0.5 0" class="leg"/>
+                <joint axis="0 0 1" name="lb_leg1_Joint_z" pos="0 -0.5 0" class="leg"/>
+                
+                <!-- 构建左后2腿 -->
+                <body name="lb_leg2" pos="0 1 0">
+                    <geom name="lb_leg2_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                    <joint axis="1 0 0" name="lb_leg2_Joint_x" pos="0 -0.5 0" class="leg"/>
+                    <joint axis="0 0 1" name="lb_leg2_Joint_z" pos="0 -0.5 0" class="leg"/>
+                    <!-- 构建左后3腿 -->
+                    <body name="lb_leg3" pos="0 1 0">
+                        <geom name="lb_leg3_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="box"/>
+                        <joint axis="1 0 0" name="lb_leg3_Joint_x" pos="0 -0.5 0" class="leg"/>
+                        <joint axis="0 0 1" name="lb_leg3_Joint_z" pos="0 -0.5 0" class="leg"/>
+                        <body name ="lb_motor" pos="0 0.5 0">
+                            <geom name ="lb_motor_geom" pos="0 0 0" class="wheel"/>
+                            <joint axis="0 1 0" name="lb_motor_y" pos="0 -0.1 0" class="wheel"/>
+                            <site name="thrust3" pos="0 0 0"/>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <!-- 构建右后1腿 -->
+            <body name="rb_leg1" pos="-1.2 -0.9 0">
+                <geom name="rb_leg1_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                <joint axis="1 0 0" name="rb_leg1_Joint_x" pos="0 0.5 0" class="leg"/>
+                <joint axis="0 0 1" name="rb_leg1_Joint_z" pos="0 0.5 0" class="leg"/>
+               
+                <!-- 构建右后2腿 -->
+                <body name="rb_leg2" pos="0 -1 0">
+                    <geom name="rb_leg2_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="capsule"/>
+                    <joint axis="1 0 0" name="rb_leg2_Joint_x" pos="0 0.5 0" class="leg"/>
+                    <joint axis="0 0 1" name="rb_leg2_Joint_z" pos="0 0.5 0" class="leg"/>
+                    
+                    <!-- 构建右后3腿 -->
+                    <body name="rb_leg3" pos="0 -1 0">
+                        <geom name="rb_leg3_geom" pos="0 0 0" fromto="0 -0.5 0 0 0.5 0" size="0.2" type="box"/>
+                        <joint axis="1 0 0" name="rb_leg3_Joint_x" pos="0 0.5 0" class="leg"/>
+                        <joint axis="0 0 1" name="rb_leg3_Joint_z" pos="0 0.5 0" class="leg"/>
+                        <body name ="rb_motor" pos="0 -0.5 0">
+                            <geom name ="rb_motor_geom" pos="0 0 0" class="wheel"/>
+                            <joint axis="0 1 0" name="rb_motor_y" pos="0 0.1 0" class="wheel"/>
+                            <site name="thrust4" pos="0 0 0"/>
+                        </body>
+                    </body>
+                </body>
+            </body>
+
+        </body>
+    </worldbody> 
+    <!-- 肌肉 -->
+   
+    <actuator>
+         
+        <position name="lf_leg1_motor_x" joint="lf_leg1_Joint_x" class="leg" />
+        <position name="lf_leg1_motor_z" joint="lf_leg1_Joint_z" class="leg" />
+        <position name="lf_leg2_motor_x" joint="lf_leg2_Joint_x" class="leg" />
+        <position name="lf_leg2_motor_z" joint="lf_leg2_Joint_z" class="leg" />
+        <position name="lf_leg3_motor_x" joint="lf_leg3_Joint_x" class="leg" />
+        <position name="lf_leg3_motor_z" joint="lf_leg3_Joint_z" class="leg" />
+        <position name="rf_leg1_motor_x" joint="rf_leg1_Joint_x" class="leg" />
+        <position name="rf_leg1_motor_z" joint="rf_leg1_Joint_z" class="leg" />
+        <position name="rf_leg2_motor_x" joint="rf_leg2_Joint_x" class="leg" />
+        <position name="rf_leg2_motor_z" joint="rf_leg2_Joint_z" class="leg" />
+        <position name="rf_leg3_motor_x" joint="rf_leg3_Joint_x" class="leg" />
+        <position name="rf_leg3_motor_z" joint="rf_leg3_Joint_z" class="leg" />
+        <position name="lb_leg1_motor_x" joint="lb_leg1_Joint_x" class="leg" />
+        <position name="lb_leg2_motor_x" joint="lb_leg2_Joint_x" class="leg" />
+        <position name="lb_leg3_motor_x" joint="lb_leg3_Joint_x" class="leg" />
+        <position name="rb_leg1_motor_x" joint="rb_leg1_Joint_x" class="leg" />
+        <position name="rb_leg2_motor_x" joint="rb_leg2_Joint_x" class="leg" />
+        <position name="rb_leg3_motor_x" joint="rb_leg3_Joint_x" class="leg" />
+        <position name="lb_leg1_motor_z" joint="lb_leg1_Joint_z" class="leg" />
+        <position name="lb_leg2_motor_z" joint="lb_leg2_Joint_z" class="leg" />
+        <position name="lb_leg3_motor_z" joint="lb_leg3_Joint_z" class="leg" />
+        <position name="rb_leg1_motor_z" joint="rb_leg1_Joint_z" class="leg" />
+        <position name="rb_leg2_motor_z" joint="rb_leg2_Joint_z" class="leg" />
+        <position name="rb_leg3_motor_z" joint="rb_leg3_Joint_z" class="leg" />
+        <velocity name="lf_motor" joint="lf_motor_y" class="wheel"/>
+        <velocity name="rf_motor" joint="rf_motor_y" class="wheel"/>
+        <velocity name="lb_motor" joint="lb_motor_y" class="wheel"/>
+        <velocity name="rb_motor" joint="rb_motor_y" class="wheel"/>
+        <general name="thrust_1" site="thrust1" class="propl"/>
+        <general name="thrust_2" site="thrust2" class="propr"/>
+        <general name="thrust_3" site="thrust3" class="propl"/>
+        <general name="thrust_4" site="thrust4" class="propr"/>
+
+    </actuator>
+</mujoco>

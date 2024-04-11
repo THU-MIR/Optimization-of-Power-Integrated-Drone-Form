@@ -1,0 +1,401 @@
+<mujoco model="robot">
+	<default>
+		<default class="/"/>
+	</default>
+	<worldbody>
+		<light name="//unnamed_light_0" class="/" directional="true" pos="-0.5 0.5 3" dir="0 0 -1"/>
+		<geom name="floor" class="/" type="plane" size="1 1 1" rgba="1 0.83 0.61 0.5" pos="0 0 0"/>
+		<body name="main" pos="0 0 0.5">
+			<joint name="root" class="/" type="free" pos="0 0 0" limited="false" margin="0.01" armature="0" damping="0"/>
+			<geom name="main_geom" class="/" type="box" size="1.6 0.4 0.4" pos="0 0 0"/>
+			<site name="lf1_1" class="/" pos="1.2 0.4 0.4"/>
+			<site name="lf1_2" class="/" pos="0.8 0.4 0"/>
+			<site name="lf1_3" class="/" pos="1.2 0.4 -0.4"/>
+			<site name="lf1_4" class="/" pos="1.6 0.4 0"/>
+			<site name="rf1_1" class="/" pos="1.2 -0.4 0.4"/>
+			<site name="rf1_2" class="/" pos="0.8 -0.4 0"/>
+			<site name="rf1_3" class="/" pos="1.2 -0.4 -0.4"/>
+			<site name="rf1_4" class="/" pos="1.6 -0.4 0"/>
+			<site name="lb1_1" class="/" pos="-1.2 0.4 0.4"/>
+			<site name="lb1_2" class="/" pos="-1.6 0.4 0"/>
+			<site name="lb1_3" class="/" pos="-1.2 0.4 -0.4"/>
+			<site name="lb1_4" class="/" pos="-0.8 0.4 0"/>
+			<site name="rb1_1" class="/" pos="-1.2 -0.4 0.4"/>
+			<site name="rb1_2" class="/" pos="-1.6 -0.4 0"/>
+			<site name="rb1_3" class="/" pos="-1.2 -0.4 -0.4"/>
+			<site name="rb1_4" class="/" pos="-0.8 -0.4 0"/>
+			<body name="lf_leg1" pos="1.2 1.15 0">
+				<geom name="lf_leg1_geom" class="/" type="capsule" size="0.247" fromto="0 -0.746 0 0 0.746 0" pos="0 0 0"/>
+				<joint name="lf_leg1_Joint" class="/" type="ball" pos="0 -0.746 0" range="0 180"/>
+				<site name="lf1_1e" class="/" pos="0 0 0.2"/>
+				<site name="lf1_2e" class="/" pos="-0.2 0 0"/>
+				<site name="lf1_3e" class="/" pos="0 0 -0.2"/>
+				<site name="lf1_4e" class="/" pos="0.2 0 0"/>
+				<site name="lf2_1" class="/" pos="0 0 0.2"/>
+				<site name="lf2_2" class="/" pos="-0.2 0 0"/>
+				<site name="lf2_3" class="/" pos="0 0 -0.2"/>
+				<site name="lf2_4" class="/" pos="0.2 0 0"/>
+				<body name="lf_leg2" pos="0 1.37 0">
+					<geom name="lf_leg2_geom" class="/" type="capsule" size="0.238" fromto="0 -0.624 0 0 0.624 0" pos="0 0 0"/>
+					<joint name="lf_leg2_Joint" class="/" type="ball" pos="0 -0.624 0" range="0 180"/>
+					<site name="lf2_1e" class="/" pos="0 0 0.2"/>
+					<site name="lf2_2e" class="/" pos="-0.2 0 0"/>
+					<site name="lf2_3e" class="/" pos="0 0 -0.2"/>
+					<site name="lf2_4e" class="/" pos="0.2 0 0"/>
+					<site name="lf3_1" class="/" pos="0 0 0.2"/>
+					<site name="lf3_2" class="/" pos="-0.2 0 0"/>
+					<site name="lf3_3" class="/" pos="0 0 -0.2"/>
+					<site name="lf3_4" class="/" pos="0.2 0 0"/>
+					<body name="lf_leg3" pos="0 1 0">
+						<geom name="lf_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.376 0 0 0.376 0" pos="0 0 0"/>
+						<joint name="lf_leg3_Joint" class="/" type="ball" pos="0 -0.626 0" range="0 180"/>
+						<site name="lf3_1e" class="/" pos="0 0 0.2"/>
+						<site name="lf3_2e" class="/" pos="-0.2 0 0"/>
+						<site name="lf3_3e" class="/" pos="0 0 -0.2"/>
+						<site name="lf3_4e" class="/" pos="0.2 0 0"/>
+					</body>
+				</body>
+			</body>
+			<body name="rf_leg1" pos="1.2 -1.22 0">
+				<geom name="rf_leg1_geom" class="/" type="capsule" size="0.128" fromto="0 -0.821 0 0 0.821 0" pos="0 0 0"/>
+				<joint name="rf_leg1_Joint" class="/" type="ball" pos="0 0.821 0" range="0 180"/>
+				<site name="rf1_1e" class="/" pos="0 0 0.2"/>
+				<site name="rf1_2e" class="/" pos="-0.2 0 0"/>
+				<site name="rf1_3e" class="/" pos="0 0 -0.2"/>
+				<site name="rf1_4e" class="/" pos="0.2 0 0"/>
+				<site name="rf2_1" class="/" pos="0 0 0.2"/>
+				<site name="rf2_2" class="/" pos="-0.2 0 0"/>
+				<site name="rf2_3" class="/" pos="0 0 -0.2"/>
+				<site name="rf2_4" class="/" pos="0.2 0 0"/>
+				<body name="rf_leg2" pos="0 -1.39 0">
+					<geom name="rf_leg2_geom" class="/" type="capsule" size="0.217" fromto="0 -0.567 0 0 0.567 0" pos="0 0 0"/>
+					<joint name="rf_leg2_Joint" class="/" type="ball" pos="0 0.567 0" range="0 180"/>
+					<site name="rf2_1e" class="/" pos="0 0 0.2"/>
+					<site name="rf2_2e" class="/" pos="-0.2 0 0"/>
+					<site name="rf2_3e" class="/" pos="0 0 -0.2"/>
+					<site name="rf2_4e" class="/" pos="0.2 0 0"/>
+					<site name="rf3_1" class="/" pos="0 0 0.2"/>
+					<site name="rf3_2" class="/" pos="-0.2 0 0"/>
+					<site name="rf3_3" class="/" pos="0 0 -0.2"/>
+					<site name="rf3_4" class="/" pos="0.2 0 0"/>
+					<body name="rf_leg3" pos="0 -0.885 0">
+						<geom name="rf_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.318 0 0 0.318 0" pos="0 0 0"/>
+						<joint name="rf_leg3_Joint" class="/" type="ball" pos="0 0.568 0" range="0 180"/>
+						<site name="rf3_1e" class="/" pos="0 0 0.2"/>
+						<site name="rf3_2e" class="/" pos="-0.2 0 0"/>
+						<site name="rf3_3e" class="/" pos="0 0 -0.2"/>
+						<site name="rf3_4e" class="/" pos="0.2 0 0"/>
+					</body>
+				</body>
+			</body>
+			<body name="lb_leg1" pos="-1.2 0.996 0">
+				<geom name="lb_leg1_geom" class="/" type="capsule" size="0.257" fromto="0 -0.596 0 0 0.596 0" pos="0 0 0"/>
+				<joint name="lb_leg1_Joint" class="/" type="ball" pos="0 -0.596 0" range="0 180"/>
+				<site name="lb1_1e" class="/" pos="0 0 0.2"/>
+				<site name="lb1_2e" class="/" pos="-0.2 0 0"/>
+				<site name="lb1_3e" class="/" pos="0 0 -0.2"/>
+				<site name="lb1_4e" class="/" pos="0.2 0 0"/>
+				<site name="lb2_1" class="/" pos="0 0 0.2"/>
+				<site name="lb2_2" class="/" pos="-0.2 0 0"/>
+				<site name="lb2_3" class="/" pos="0 0 -0.2"/>
+				<site name="lb2_4" class="/" pos="0.2 0 0"/>
+				<body name="lb_leg2" pos="0 1.2 0">
+					<geom name="lb_leg2_geom" class="/" type="capsule" size="0.205" fromto="0 -0.599 0 0 0.599 0" pos="0 0 0"/>
+					<joint name="lb_leg2_Joint" class="/" type="ball" pos="0 -0.599 0" range="0 180"/>
+					<site name="lb2_1e" class="/" pos="0 0 0.2"/>
+					<site name="lb2_2e" class="/" pos="-0.2 0 0"/>
+					<site name="lb2_3e" class="/" pos="0 0 -0.2"/>
+					<site name="lb2_4e" class="/" pos="0.2 0 0"/>
+					<site name="lb3_1" class="/" pos="0 0 0.2"/>
+					<site name="lb3_2" class="/" pos="-0.2 0 0"/>
+					<site name="lb3_3" class="/" pos="0 0 -0.2"/>
+					<site name="lb3_4" class="/" pos="0.2 0 0"/>
+					<body name="lb_leg3" pos="0 0.958 0">
+						<geom name="lb_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.359 0 0 0.359 0" pos="0 0 0"/>
+						<joint name="lb_leg3_Joint" class="/" type="ball" pos="0 -0.609 0" range="0 180"/>
+						<site name="lb3_1e" class="/" pos="0 0 0.2"/>
+						<site name="lb3_2e" class="/" pos="-0.2 0 0"/>
+						<site name="lb3_3e" class="/" pos="0 0 -0.2"/>
+						<site name="lb3_4e" class="/" pos="0.2 0 0"/>
+					</body>
+				</body>
+			</body>
+			<body name="rb_leg1" pos="-1.2 -1.38 0">
+				<geom name="rb_leg1_geom" class="/" type="capsule" size="0.279" fromto="0 -0.977 0 0 0.977 0" pos="0 0 0"/>
+				<joint name="rb_leg1_Joint" class="/" type="ball" pos="0 0.977 0" range="0 180"/>
+				<site name="rb1_1e" class="/" pos="0 0 0.2"/>
+				<site name="rb1_2e" class="/" pos="-0.2 0 0"/>
+				<site name="rb1_3e" class="/" pos="0 0 -0.2"/>
+				<site name="rb1_4e" class="/" pos="0.2 0 0"/>
+				<site name="rb2_1" class="/" pos="0 0 0.2"/>
+				<site name="rb2_2" class="/" pos="-0.2 0 0"/>
+				<site name="rb2_3" class="/" pos="0 0 -0.2"/>
+				<site name="rb2_4" class="/" pos="0.2 0 0"/>
+				<body name="rb_leg2" pos="0 -1.88 0">
+					<geom name="rb_leg2_geom" class="/" type="capsule" size="0.207" fromto="0 -0.899 0 0 0.899 0" pos="0 0 0"/>
+					<joint name="rb_leg2_Joint" class="/" type="ball" pos="0 0.899 0" range="0 180"/>
+					<site name="rb2_1e" class="/" pos="0 0 0.2"/>
+					<site name="rb2_2e" class="/" pos="-0.2 0 0"/>
+					<site name="rb2_3e" class="/" pos="0 0 -0.2"/>
+					<site name="rb2_4e" class="/" pos="0.2 0 0"/>
+					<site name="rb3_1" class="/" pos="0 0 0.2"/>
+					<site name="rb3_2" class="/" pos="-0.2 0 0"/>
+					<site name="rb3_3" class="/" pos="0 0 -0.2"/>
+					<site name="rb3_4" class="/" pos="0.2 0 0"/>
+					<body name="rb_leg3" pos="0 -1.27 0">
+						<geom name="rb_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.372 0 0 0.372 0" pos="0 0 0"/>
+						<joint name="rb_leg3_Joint" class="/" type="ball" pos="0 0.622 0" range="0 180"/>
+						<site name="rb3_1e" class="/" pos="0 0 0.2"/>
+						<site name="rb3_2e" class="/" pos="-0.2 0 0"/>
+						<site name="rb3_3e" class="/" pos="0 0 -0.2"/>
+						<site name="rb3_4e" class="/" pos="0.2 0 0"/>
+					</body>
+				</body>
+			</body>
+		</body>
+	</worldbody>
+	<tendon>
+		<spatial name="lf1_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf1_1"/>
+			<site site="lf1_1e"/>
+		</spatial>
+		<spatial name="lf1_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf1_2"/>
+			<site site="lf1_2e"/>
+		</spatial>
+		<spatial name="lf1_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf1_3"/>
+			<site site="lf1_3e"/>
+		</spatial>
+		<spatial name="lf1_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf1_4"/>
+			<site site="lf1_4e"/>
+		</spatial>
+		<spatial name="lf2_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf2_1"/>
+			<site site="lf2_1e"/>
+		</spatial>
+		<spatial name="lf2_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf2_2"/>
+			<site site="lf2_2e"/>
+		</spatial>
+		<spatial name="lf2_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf2_3"/>
+			<site site="lf2_3e"/>
+		</spatial>
+		<spatial name="lf2_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf2_4"/>
+			<site site="lf2_4e"/>
+		</spatial>
+		<spatial name="lf3_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf3_1"/>
+			<site site="lf3_1e"/>
+		</spatial>
+		<spatial name="lf3_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf3_2"/>
+			<site site="lf3_2e"/>
+		</spatial>
+		<spatial name="lf3_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf3_3"/>
+			<site site="lf3_3e"/>
+		</spatial>
+		<spatial name="lf3_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lf3_4"/>
+			<site site="lf3_4e"/>
+		</spatial>
+		<spatial name="rf1_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf1_1"/>
+			<site site="rf1_1e"/>
+		</spatial>
+		<spatial name="rf1_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf1_2"/>
+			<site site="rf1_2e"/>
+		</spatial>
+		<spatial name="rf1_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf1_3"/>
+			<site site="rf1_3e"/>
+		</spatial>
+		<spatial name="rf1_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf1_4"/>
+			<site site="rf1_4e"/>
+		</spatial>
+		<spatial name="rf2_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf2_1"/>
+			<site site="rf2_1e"/>
+		</spatial>
+		<spatial name="rf2_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf2_2"/>
+			<site site="rf2_2e"/>
+		</spatial>
+		<spatial name="rf2_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf2_3"/>
+			<site site="rf2_3e"/>
+		</spatial>
+		<spatial name="rf2_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf2_4"/>
+			<site site="rf2_4e"/>
+		</spatial>
+		<spatial name="rf3_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf3_1"/>
+			<site site="rf3_1e"/>
+		</spatial>
+		<spatial name="rf3_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf3_2"/>
+			<site site="rf3_2e"/>
+		</spatial>
+		<spatial name="rf3_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf3_3"/>
+			<site site="rf3_3e"/>
+		</spatial>
+		<spatial name="rf3_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rf3_4"/>
+			<site site="rf3_4e"/>
+		</spatial>
+		<spatial name="lb1_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb1_1"/>
+			<site site="lb1_1e"/>
+		</spatial>
+		<spatial name="lb1_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb1_2"/>
+			<site site="lb1_2e"/>
+		</spatial>
+		<spatial name="lb1_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb1_3"/>
+			<site site="lb1_3e"/>
+		</spatial>
+		<spatial name="lb1_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb1_4"/>
+			<site site="lb1_4e"/>
+		</spatial>
+		<spatial name="lb2_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb2_1"/>
+			<site site="lb2_1e"/>
+		</spatial>
+		<spatial name="lb2_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb2_2"/>
+			<site site="lb2_2e"/>
+		</spatial>
+		<spatial name="lb2_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb2_3"/>
+			<site site="lb2_3e"/>
+		</spatial>
+		<spatial name="lb2_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb2_4"/>
+			<site site="lb2_4e"/>
+		</spatial>
+		<spatial name="lb3_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb3_1"/>
+			<site site="lb3_1e"/>
+		</spatial>
+		<spatial name="lb3_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb3_2"/>
+			<site site="lb3_2e"/>
+		</spatial>
+		<spatial name="lb3_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb3_3"/>
+			<site site="lb3_3e"/>
+		</spatial>
+		<spatial name="lb3_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="lb3_4"/>
+			<site site="lb3_4e"/>
+		</spatial>
+		<spatial name="rb1_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb1_1"/>
+			<site site="rb1_1e"/>
+		</spatial>
+		<spatial name="rb1_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb1_2"/>
+			<site site="rb1_2e"/>
+		</spatial>
+		<spatial name="rb1_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb1_3"/>
+			<site site="rb1_3e"/>
+		</spatial>
+		<spatial name="rb1_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb1_4"/>
+			<site site="rb1_4e"/>
+		</spatial>
+		<spatial name="rb2_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb2_1"/>
+			<site site="rb2_1e"/>
+		</spatial>
+		<spatial name="rb2_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb2_2"/>
+			<site site="rb2_2e"/>
+		</spatial>
+		<spatial name="rb2_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb2_3"/>
+			<site site="rb2_3e"/>
+		</spatial>
+		<spatial name="rb2_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb2_4"/>
+			<site site="rb2_4e"/>
+		</spatial>
+		<spatial name="rb3_1" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb3_1"/>
+			<site site="rb3_1e"/>
+		</spatial>
+		<spatial name="rb3_2" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb3_2"/>
+			<site site="rb3_2e"/>
+		</spatial>
+		<spatial name="rb3_3" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb3_3"/>
+			<site site="rb3_3e"/>
+		</spatial>
+		<spatial name="rb3_4" class="/" width="0.02" rgba="0.95 0.3 0.3 1">
+			<site site="rb3_4"/>
+			<site site="rb3_4e"/>
+		</spatial>
+	</tendon>
+	<actuator>
+		<muscle name="lfm1_1" class="/" tendon="lf1_1"/>
+		<muscle name="lfm1_2" class="/" tendon="lf1_2"/>
+		<muscle name="lfm1_3" class="/" tendon="lf1_3"/>
+		<muscle name="lfm1_4" class="/" tendon="lf1_4"/>
+		<muscle name="lfm2_1" class="/" tendon="lf2_1"/>
+		<muscle name="lfm2_2" class="/" tendon="lf2_2"/>
+		<muscle name="lfm2_3" class="/" tendon="lf2_3"/>
+		<muscle name="lfm2_4" class="/" tendon="lf2_4"/>
+		<muscle name="lfm3_1" class="/" tendon="lf3_1"/>
+		<muscle name="lfm3_2" class="/" tendon="lf3_2"/>
+		<muscle name="lfm3_3" class="/" tendon="lf3_3"/>
+		<muscle name="lfm3_4" class="/" tendon="lf3_4"/>
+		<muscle name="lbm1_1" class="/" tendon="lb1_1"/>
+		<muscle name="lbm1_2" class="/" tendon="lb1_2"/>
+		<muscle name="lbm1_3" class="/" tendon="lb1_3"/>
+		<muscle name="lbm1_4" class="/" tendon="lb1_4"/>
+		<muscle name="lbm2_1" class="/" tendon="lb2_1"/>
+		<muscle name="lbm2_2" class="/" tendon="lb2_2"/>
+		<muscle name="lbm2_3" class="/" tendon="lb2_3"/>
+		<muscle name="lbm2_4" class="/" tendon="lb2_4"/>
+		<muscle name="lbm3_1" class="/" tendon="lb3_1"/>
+		<muscle name="lbm3_2" class="/" tendon="lb3_2"/>
+		<muscle name="lbm3_3" class="/" tendon="lb3_3"/>
+		<muscle name="lbm3_4" class="/" tendon="lb3_4"/>
+		<muscle name="rfm1_1" class="/" tendon="rf1_1"/>
+		<muscle name="rfm1_2" class="/" tendon="rf1_2"/>
+		<muscle name="rfm1_3" class="/" tendon="rf1_3"/>
+		<muscle name="rfm1_4" class="/" tendon="rf1_4"/>
+		<muscle name="rfm2_1" class="/" tendon="rf2_1"/>
+		<muscle name="rfm2_2" class="/" tendon="rf2_2"/>
+		<muscle name="rfm2_3" class="/" tendon="rf2_3"/>
+		<muscle name="rfm2_4" class="/" tendon="rf2_4"/>
+		<muscle name="rfm3_1" class="/" tendon="rf3_1"/>
+		<muscle name="rfm3_2" class="/" tendon="rf3_2"/>
+		<muscle name="rfm3_3" class="/" tendon="rf3_3"/>
+		<muscle name="rfm3_4" class="/" tendon="rf3_4"/>
+		<muscle name="rbm1_1" class="/" tendon="rb1_1"/>
+		<muscle name="rbm1_2" class="/" tendon="rb1_2"/>
+		<muscle name="rbm1_3" class="/" tendon="rb1_3"/>
+		<muscle name="rbm1_4" class="/" tendon="rb1_4"/>
+		<muscle name="rbm2_1" class="/" tendon="rb2_1"/>
+		<muscle name="rbm2_2" class="/" tendon="rb2_2"/>
+		<muscle name="rbm2_3" class="/" tendon="rb2_3"/>
+		<muscle name="rbm2_4" class="/" tendon="rb2_4"/>
+		<muscle name="rbm3_1" class="/" tendon="rb3_1"/>
+		<muscle name="rbm3_2" class="/" tendon="rb3_2"/>
+		<muscle name="rbm3_3" class="/" tendon="rb3_3"/>
+		<muscle name="rbm3_4" class="/" tendon="rb3_4"/>
+	</actuator>
+</mujoco>

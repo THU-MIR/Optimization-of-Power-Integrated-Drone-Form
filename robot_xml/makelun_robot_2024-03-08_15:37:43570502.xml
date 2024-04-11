@@ -1,0 +1,156 @@
+<mujoco model="robot">
+	<compiler coordinate="local" angle="degree" inertiafromgeom="true"/>
+	<option timestep="0.01" impratio="1" integrator="RK4"/>
+	<default>
+		<default class="/">
+			<geom conaffinity="0" condim="3" friction="1 0.5 0.5" density="1" margin="0.01"/>
+			<default class="leg">
+				<joint type="hinge" limited="true" range="-90 90" armature="1" damping="10" frictionloss="25"/>
+				<motor ctrlrange="-1 1" forcerange="-1 1" gear="1"/>
+				<position ctrlrange="-10 10" forcerange="-30 30" gear="6.37" kp="200" kv="1"/>
+			</default>
+			<default class="wheel">
+				<joint type="hinge" limited="false" armature="1" damping="0.3" frictionloss="0"/>
+				<geom type="cylinder" size="0.8" material="MatPlane" rgba="0.8 0.9 0.8 1" friction="1 0.005 0.5" fromto="0 -0.05 0 0 0.05 0"/>
+				<motor ctrlrange="-1 1" forcerange="-150 150" gear="100"/>
+				<velocity ctrlrange="-10 10" forcerange="-150 150" gear="1" kv="150"/>
+			</default>
+			<default class="propl">
+				<mesh scale="0.01 0.01 0.01"/>
+				<general ctrlrange="0 1" gear="0 50 0 0 0 0"/>
+				<motor ctrlrange="0 10" gear="0 0 0 0 0 100"/>
+			</default>
+			<default class="propr">
+				<mesh scale="0.01 0.01 0.01"/>
+				<general ctrlrange="0 1" gear="0 -50 0 0 0 0"/>
+				<motor ctrlrange="0 10" gear="0 0 0 0 0 100"/>
+			</default>
+		</default>
+	</default>
+	<asset>
+		<texture name="texplane" type="2d" builtin="checker" rgb1="0 0 0" rgb2="1 1 1" width="100" height="100"/>
+		<material name="MatPlane" class="/" texture="texplane" texrepeat="60 60" specular="1" shininess="1" reflectance="0.5"/>
+	</asset>
+	<worldbody>
+		<light name="//unnamed_light_0" class="/" directional="true" pos="-0.5 0.5 3" dir="0 0 -1"/>
+		<geom name="floor" class="/" type="plane" conaffinity="1" condim="3" size="100 100 100" material="MatPlane" rgba="0.8 0.9 0.8 1" pos="0 0 -1"/>
+		<body name="torso" pos="0 0 1">
+			<joint name="root" class="/" type="free" pos="0 0 0" limited="false" margin="0.01" armature="0" damping="0"/>
+			<geom name="torso_geom" class="/" type="box" size="1.6 0.4 0.4" pos="0 0 0"/>
+			<body name="lf_leg1" pos="1.2 1.09 0">
+				<geom name="lf_leg1_geom" class="/" type="capsule" size="0.2" fromto="0 -0.695 0 0 0.695 0" pos="0 0 0"/>
+				<joint name="lf_leg1_Joint_x" class="leg" pos="0 -0.695 0" axis="1 0 0"/>
+				<joint name="lf_leg1_Joint_z" class="leg" pos="0 -0.695 0" axis="0 0 1"/>
+				<body name="lf_leg2" pos="0 1.32 0">
+					<geom name="lf_leg2_geom" class="/" type="capsule" size="0.2" fromto="0 -0.628 0 0 0.628 0" pos="0 0 0"/>
+					<joint name="lf_leg2_Joint_x" class="leg" pos="0 -0.628 0" axis="1 0 0"/>
+					<joint name="lf_leg2_Joint_z" class="leg" pos="0 -0.628 0" axis="0 0 1"/>
+					<body name="lf_leg3" pos="0 1.27 0">
+						<geom name="lf_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.646 0 0 0.646 0" pos="0 0 0"/>
+						<joint name="lf_leg3_Joint_x" class="leg" pos="0 -0.646 0" axis="1 0 0"/>
+						<joint name="lf_leg3_Joint_z" class="leg" pos="0 -0.646 0" axis="0 0 1"/>
+						<body name="lf_motor" pos="0 0.646 0">
+							<geom name="lf_motor_geom" class="wheel" pos="0 0 0"/>
+							<joint name="lf_motor_y" class="wheel" pos="0 -0.1 0" axis="0 1 0"/>
+							<site name="thrust1" class="/" pos="0 0 0"/>
+						</body>
+					</body>
+				</body>
+			</body>
+			<body name="rf_leg1" pos="1.2 -1.07 0">
+				<geom name="rf_leg1_geom" class="/" type="capsule" size="0.2" fromto="0 -0.672 0 0 0.672 0" pos="0 0 0"/>
+				<joint name="rf_leg1_Joint_x" class="leg" pos="0 0.672 0" axis="1 0 0"/>
+				<joint name="rf_leg1_Joint_z" class="leg" pos="0 0.672 0" axis="0 0 1"/>
+				<body name="rf_leg2" pos="0 -1.42 0">
+					<geom name="rf_leg2_geom" class="/" type="capsule" size="0.2" fromto="0 -0.751 0 0 0.751 0" pos="0 0 0"/>
+					<joint name="rf_leg2_Joint_x" class="leg" pos="0 0.751 0" axis="1 0 0"/>
+					<joint name="rf_leg2_Joint_z" class="leg" pos="0 0.751 0" axis="0 0 1"/>
+					<body name="rf_leg3" pos="0 -1.42 0">
+						<geom name="rf_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.668 0 0 0.668 0" pos="0 0 0"/>
+						<joint name="rf_leg3_Joint_x" class="leg" pos="0 0.668 0" axis="1 0 0"/>
+						<joint name="rf_leg3_Joint_z" class="leg" pos="0 0.668 0" axis="0 0 1"/>
+						<body name="rf_motor" pos="0 -0.668 0">
+							<geom name="rf_motor_geom" class="wheel" pos="0 0 0"/>
+							<joint name="rf_motor_y" class="wheel" pos="0 0.1 0" axis="0 1 0"/>
+							<site name="thrust2" class="/" pos="0 0 0"/>
+						</body>
+					</body>
+				</body>
+			</body>
+			<body name="lb_leg1" pos="-1.2 1.24 0">
+				<geom name="lb_leg1_geom" class="/" type="capsule" size="0.2" fromto="0 -0.841 0 0 0.841 0" pos="0 0 0"/>
+				<joint name="lb_leg1_Joint_x" class="leg" pos="0 -0.841 0" axis="1 0 0"/>
+				<joint name="lb_leg1_Joint_z" class="leg" pos="0 -0.841 0" axis="0 0 1"/>
+				<body name="lb_leg2" pos="0 1.54 0">
+					<geom name="lb_leg2_geom" class="/" type="capsule" size="0.2" fromto="0 -0.697 0 0 0.697 0" pos="0 0 0"/>
+					<joint name="lb_leg2_Joint_x" class="leg" pos="0 -0.697 0" axis="1 0 0"/>
+					<joint name="lb_leg2_Joint_z" class="leg" pos="0 -0.697 0" axis="0 0 1"/>
+					<body name="lb_leg3" pos="0 1.54 0">
+						<geom name="lb_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.84 0 0 0.84 0" pos="0 0 0"/>
+						<joint name="lb_leg3_Joint_x" class="leg" pos="0 -0.84 0" axis="1 0 0"/>
+						<joint name="lb_leg3_Joint_z" class="leg" pos="0 -0.84 0" axis="0 0 1"/>
+						<body name="lb_motor" pos="0 0.84 0">
+							<geom name="lb_motor_geom" class="wheel" pos="0 0 0"/>
+							<joint name="lb_motor_y" class="wheel" pos="0 -0.1 0" axis="0 1 0"/>
+							<site name="thrust3" class="/" pos="0 0 0"/>
+						</body>
+					</body>
+				</body>
+			</body>
+			<body name="rb_leg1" pos="-1.2 -1.32 0">
+				<geom name="rb_leg1_geom" class="/" type="capsule" size="0.2" fromto="0 -0.917 0 0 0.917 0" pos="0 0 0"/>
+				<joint name="rb_leg1_Joint_x" class="leg" pos="0 0.917 0" axis="1 0 0"/>
+				<joint name="rb_leg1_Joint_z" class="leg" pos="0 0.917 0" axis="0 0 1"/>
+				<body name="rb_leg2" pos="0 -1.61 0">
+					<geom name="rb_leg2_geom" class="/" type="capsule" size="0.2" fromto="0 -0.698 0 0 0.698 0" pos="0 0 0"/>
+					<joint name="rb_leg2_Joint_x" class="leg" pos="0 0.698 0" axis="1 0 0"/>
+					<joint name="rb_leg2_Joint_z" class="leg" pos="0 0.698 0" axis="0 0 1"/>
+					<body name="rb_leg3" pos="0 -1.56 0">
+						<geom name="rb_leg3_geom" class="/" type="box" size="0.2" fromto="0 -0.866 0 0 0.866 0" pos="0 0 0"/>
+						<joint name="rb_leg3_Joint_x" class="leg" pos="0 0.866 0" axis="1 0 0"/>
+						<joint name="rb_leg3_Joint_z" class="leg" pos="0 0.866 0" axis="0 0 1"/>
+						<body name="rb_motor" pos="0 -0.866 0">
+							<geom name="rb_motor_geom" class="wheel" pos="0 0 0"/>
+							<joint name="rb_motor_y" class="wheel" pos="0 0.1 0" axis="0 1 0"/>
+							<site name="thrust4" class="/" pos="0 0 0"/>
+						</body>
+					</body>
+				</body>
+			</body>
+		</body>
+	</worldbody>
+	<actuator>
+		<position name="lf_leg1_motor_x" class="leg" joint="lf_leg1_Joint_x"/>
+		<position name="lf_leg1_motor_z" class="leg" joint="lf_leg1_Joint_z"/>
+		<position name="lf_leg2_motor_x" class="leg" joint="lf_leg2_Joint_x"/>
+		<position name="lf_leg2_motor_z" class="leg" joint="lf_leg2_Joint_z"/>
+		<position name="lf_leg3_motor_x" class="leg" joint="lf_leg3_Joint_x"/>
+		<position name="lf_leg3_motor_z" class="leg" joint="lf_leg3_Joint_z"/>
+		<position name="rf_leg1_motor_x" class="leg" joint="rf_leg1_Joint_x"/>
+		<position name="rf_leg1_motor_z" class="leg" joint="rf_leg1_Joint_z"/>
+		<position name="rf_leg2_motor_x" class="leg" joint="rf_leg2_Joint_x"/>
+		<position name="rf_leg2_motor_z" class="leg" joint="rf_leg2_Joint_z"/>
+		<position name="rf_leg3_motor_x" class="leg" joint="rf_leg3_Joint_x"/>
+		<position name="rf_leg3_motor_z" class="leg" joint="rf_leg3_Joint_z"/>
+		<position name="lb_leg1_motor_x" class="leg" joint="lb_leg1_Joint_x"/>
+		<position name="lb_leg2_motor_x" class="leg" joint="lb_leg2_Joint_x"/>
+		<position name="lb_leg3_motor_x" class="leg" joint="lb_leg3_Joint_x"/>
+		<position name="rb_leg1_motor_x" class="leg" joint="rb_leg1_Joint_x"/>
+		<position name="rb_leg2_motor_x" class="leg" joint="rb_leg2_Joint_x"/>
+		<position name="rb_leg3_motor_x" class="leg" joint="rb_leg3_Joint_x"/>
+		<position name="lb_leg1_motor_z" class="leg" joint="lb_leg1_Joint_z"/>
+		<position name="lb_leg2_motor_z" class="leg" joint="lb_leg2_Joint_z"/>
+		<position name="lb_leg3_motor_z" class="leg" joint="lb_leg3_Joint_z"/>
+		<position name="rb_leg1_motor_z" class="leg" joint="rb_leg1_Joint_z"/>
+		<position name="rb_leg2_motor_z" class="leg" joint="rb_leg2_Joint_z"/>
+		<position name="rb_leg3_motor_z" class="leg" joint="rb_leg3_Joint_z"/>
+		<velocity name="lf_motor" class="wheel" joint="lf_motor_y"/>
+		<velocity name="rf_motor" class="wheel" joint="rf_motor_y"/>
+		<velocity name="lb_motor" class="wheel" joint="lb_motor_y"/>
+		<velocity name="rb_motor" class="wheel" joint="rb_motor_y"/>
+		<general name="thrust_1" class="propl" site="thrust1"/>
+		<general name="thrust_2" class="propr" site="thrust2"/>
+		<general name="thrust_3" class="propl" site="thrust3"/>
+		<general name="thrust_4" class="propr" site="thrust4"/>
+	</actuator>
+</mujoco>

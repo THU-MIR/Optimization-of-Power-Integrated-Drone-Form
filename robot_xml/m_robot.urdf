@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="m_robot">
+  <mujoco>
+    <compiler meshdir="../meshes" balanceinertia="true" discardvisual="false"/>
+  </mujoco>
+  <joint name="bl_leg1Joint" type="ball">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="body"/>
+    <child link="bl_leg1"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="bl_leg2Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="bl_leg1"/>
+    <child link="bl_leg2"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="bl_leg3Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="bl_leg2"/>
+    <child link="bl_leg3"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="br_leg1Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="body"/>
+    <child link="br_leg1"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="br_leg2Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="br_leg1"/>
+    <child link="br_leg2"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="br_leg3Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="br_leg2"/>
+    <child link="br_leg3"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="fl_leg1Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="body"/>
+    <child link="fl_leg1"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="fl_leg2Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="fl_leg1"/>
+    <child link="fl_leg2"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="fl_leg3Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="fl_leg2"/>
+    <child link="fl_leg3"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="fr_leg1Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="body"/>
+    <child link="fr_leg1"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="fr_leg2Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="fr_leg1"/>
+    <child link="fr_leg2"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <joint name="fr_leg3Joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="fr_leg2"/>
+    <child link="fr_leg3"/>
+    <limit lower="0." upper="0." effort="0." velocity="0."/>
+  </joint>
+  <link name="bl_leg1">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/bl_leg1_Mesh_4.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/bl_leg1_Mesh_4.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="bl_leg2">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/bl_leg2_Mesh_5.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/bl_leg2_Mesh_5.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="bl_leg3">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/bl_leg3_Mesh_6.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/bl_leg3_Mesh_6.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="body">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/body_Mesh_0.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/body_Mesh_0.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="br_leg1">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/br_leg1_Mesh_10.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/br_leg1_Mesh_10.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="br_leg2">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/br_leg2_Mesh_11.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/br_leg2_Mesh_11.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="br_leg3">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/br_leg3_Mesh_12.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/br_leg3_Mesh_12.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="fl_leg1">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fl_leg1_Mesh_1.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fl_leg1_Mesh_1.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="fl_leg2">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fl_leg2_Mesh_2.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fl_leg2_Mesh_2.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="fl_leg3">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fl_leg3_Mesh_3.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fl_leg3_Mesh_3.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="fr_leg1">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fr_leg1_Mesh_7.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fr_leg1_Mesh_7.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="fr_leg2">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fr_leg2_Mesh_8.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fr_leg2_Mesh_8.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="fr_leg3">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fr_leg3_Mesh_9.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="meshes/fr_leg3_Mesh_9.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
